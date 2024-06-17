@@ -1,19 +1,29 @@
 import { Request, Response } from 'express';
 import { StudentServises } from './student.service';
+import studentValidationSchema from './student.validation';
 
 ///add user
 const createStudent = async (req: Request, res: Response) => {
   try {
     const { student: studentData } = req.body;
-    const result = await StudentServises.cteateStudentIntoDB(studentData);
+    // const result = await StudentServises.createStudentIntoDB(studentData);
+
+    //jod validation
+    const zodParsedData = studentValidationSchema.parse(studentData);
+
+    const result = await StudentServises.createStudentIntoDB(zodParsedData);
 
     res.status(200).json({
       success: true,
       message: 'Student is created succesfully',
       data: result,
     });
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error || 'Student is created unsuccesfully',
+      data: error,
+    });
   }
 };
 
@@ -28,7 +38,11 @@ const getAllStudents = async (req: Request, res: Response) => {
       data: resualt,
     });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: 'Student all Data not Get now here',
+      data: error,
+    });
   }
 };
 
@@ -46,7 +60,31 @@ const getSingleStudent = async (req: Request, res: Response) => {
       data: resualt,
     });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: 'Student single data not get now here',
+      data: error,
+    });
+  }
+};
+
+const deletedSingleStudent = async (req: Request, res: Response) => {
+  try {
+    const { studentId } = req.params;
+
+    const resualt = await StudentServises.deletedSingleStudentFromDB(studentId);
+
+    res.status(200).json({
+      success: true,
+      message: 'Student single data deleted successfully',
+      data: resualt,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Student single data not deleted unsuccessfully',
+      data: error,
+    });
   }
 };
 
@@ -54,4 +92,5 @@ export const StudentController = {
   createStudent,
   getAllStudents,
   getSingleStudent,
+  deletedSingleStudent,
 };
