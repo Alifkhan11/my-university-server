@@ -1,5 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { StudentServises } from './student.service';
+import sendResponse from '../../utils/sendResponse';
+import httpStatus from 'http-status';
 // import studentValidationSchema from './student.validation';
 
 ///add user
@@ -36,7 +38,13 @@ const getAllStudents = async (
   try {
     const resualt = await StudentServises.getAllStudentFromDB();
 
-    res.status(200).json({
+    // res.status(200).json({
+    //   success: true,
+    //   message: 'Student all Data Get now here',
+    //   data: resualt,
+    // });
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
       success: true,
       message: 'Student all Data Get now here',
       data: resualt,
@@ -58,7 +66,13 @@ const getSingleStudent = async (
 
     const resualt = await StudentServises.getSingleStudentFromDB(studentId);
 
-    res.status(200).json({
+    // res.status(200).json({
+    //   success: true,
+    //   message: 'Student single data get now here',
+    //   data: resualt,
+    // });
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
       success: true,
       message: 'Student single data get now here',
       data: resualt,
@@ -78,7 +92,13 @@ const deletedSingleStudent = async (
 
     const resualt = await StudentServises.deletedSingleStudentFromDB(studentId);
 
-    res.status(200).json({
+    // res.status(200).json({
+    //   success: true,
+    //   message: 'Student single data deleted successfully',
+    //   data: resualt,
+    // });
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
       success: true,
       message: 'Student single data deleted successfully',
       data: resualt,
