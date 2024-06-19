@@ -1,10 +1,9 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-const UserValidationSchema=z.object({
-    password: z.string().max(20).optional(),
+const UserValidationSchema = z.object({
+  password: z.string().max(20).optional(),
+});
 
-})
-
-export const UserValidation={
-    UserValidationSchema
-}
+export const UserValidation = {
+  UserValidationSchema,
+};

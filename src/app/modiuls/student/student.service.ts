@@ -1,8 +1,8 @@
 import { Student } from './student.model';
-import { TStudent } from './student.interfach';
+// import { TStudent } from './student.interfach';
 
-const createStudentIntoDB = async (studentData: TStudent) => {
-  const resualt = await Student.create(studentData); //bilt in static method
+// const createStudentIntoDB = async (studentData: TStudent) => {
+//   const resualt = await Student.create(studentData); //bilt in static method
 
   //static method
 
@@ -17,8 +17,8 @@ const createStudentIntoDB = async (studentData: TStudent) => {
   //   throw new Error('User alrady Exists')
   // }
   // const resualt=await student.save()//bild in instence method
-  return resualt;
-};
+//   return resualt;
+// };
 
 const getAllStudentFromDB = async () => {
   const resualt = await Student.find();
@@ -36,7 +36,7 @@ const deletedSingleStudentFromDB = async (id: string) => {
 };
 
 export const StudentServises = {
-  createStudentIntoDB,
+  // createStudentIntoDB,
   getAllStudentFromDB,
   getSingleStudentFromDB,
   deletedSingleStudentFromDB,

@@ -1,10 +1,8 @@
-import e from "express";
+import e from 'express';
+import { UserController } from './user.controller';
 
+const router = e.Router();
 
+router.post('/create-student', UserController.createStudent);
 
-const  router=e.Router()
-
-
-
-
-export const StudentRought=router
+export const UserRought = router;

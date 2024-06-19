@@ -7,8 +7,6 @@ import {
   TStudent,
   TUserName,
 } from './student.interfach';
-import bcrypt from 'bcrypt';
-import config from '../../config';
 
 const studentNameSchma = new Schema<TUserName>({
   firstname: {
@@ -107,9 +105,11 @@ const studentSchma = new Schema<TStudent, StudentModel>(
       required: [true, 'unique ID is Required'],
       unique: true,
     },
-    password: {
-      type: String,
-      required: [true, 'password ID is Required'],
+    user:{
+      type:Schema.Types.ObjectId,
+      required:[true,'User id is required'],
+      unique:true,
+      ref:"User"
     },
     name: {
       type: studentNameSchma,
@@ -160,21 +160,16 @@ const studentSchma = new Schema<TStudent, StudentModel>(
       type: String,
       required: [true, 'Permanent Address is Required'],
     },
-    profileImg: {
-      type: String,
-    },
-    isActive: {
-      type: String,
-      enum: ['active', 'blocked'],
-      default: 'active',
+    guardian: {
+      type: gurdianSchma,
+      required: [true, 'Gurdian is Required'],
     },
     localGuardian: {
       type: localGuardianSchema,
       required: [true, 'local curdian is Required'],
     },
-    guardian: {
-      type: gurdianSchma,
-      required: [true, 'Gurdian is Required'],
+    profileImg: {
+      type: String,
     },
     isDeleted: {
       type: Boolean,
@@ -200,19 +195,22 @@ studentSchma.statics.isUserExists = async function (id: string) {
   return eeixtinUser;
 };
 
-// pre save middlewere hook
-studentSchma.pre('save', async function (next) {
-  // console.log(this,'pre hooks:this is save data');
-  this.password = await bcrypt.hash(this.password, Number(config.BCRYPT));
-  next();
-});
+// // pre save middlewere hook
+// studentSchma.pre('save', async function (next) {
+//   // console.log(this,'pre hooks:this is save data');
+//   this.password = await bcrypt.hash(
+//     this.password,
+//     Number(config.BCRYPT_SALT_ROUND),
+//   );
+//   next();
+// });
 
-// post save middlewere hook
-studentSchma.post('save', function (doc, next) {
-  doc.password = '';
-  // console.log(this,'post hooks:this is save data');
-  next();
-});
+// // post save middlewere hook
+// studentSchma.post('save', function (doc, next) {
+//   doc.password = '';
+//   // console.log(this,'post hooks:this is save data');
+//   next();
+// });
 // pre find middlewere hook
 studentSchma.pre('find', function (next) {
   this.find({ isDeleted: { $ne: true } });
