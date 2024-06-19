@@ -28,7 +28,11 @@ import { StudentServises } from './student.service';
 // };
 
 ///get all user
-const getAllStudents = async (req: Request, res: Response,next:NextFunction) => {
+const getAllStudents = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const resualt = await StudentServises.getAllStudentFromDB();
 
@@ -38,13 +42,17 @@ const getAllStudents = async (req: Request, res: Response,next:NextFunction) => 
       data: resualt,
     });
   } catch (error) {
-    next(error)
+    next(error);
   }
 };
 
 //get single user
 
-const getSingleStudent = async (req: Request, res: Response,next:NextFunction) => {
+const getSingleStudent = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { studentId } = req.params;
 
@@ -55,13 +63,16 @@ const getSingleStudent = async (req: Request, res: Response,next:NextFunction) =
       message: 'Student single data get now here',
       data: resualt,
     });
-  } 
-  catch(error){
-    next(error)
+  } catch (error) {
+    next(error);
   }
 };
 
-const deletedSingleStudent = async (req: Request, res: Response,next:NextFunction) => {
+const deletedSingleStudent = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { studentId } = req.params;
 
@@ -73,9 +84,9 @@ const deletedSingleStudent = async (req: Request, res: Response,next:NextFunctio
       data: resualt,
     });
   } catch (error) {
-    next(error)
-    };
-  };
+    next(error);
+  }
+};
 
 export const StudentController = {
   // createStudent,

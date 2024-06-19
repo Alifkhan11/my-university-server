@@ -4,7 +4,7 @@ import { Student } from '../student/student.model';
 import { TUser } from './user.interfach';
 import { User } from './user.model';
 
-const createUserFromtoDB = async (password: string , studentData: TStudent) => {
+const createUserFromtoDB = async (password: string, studentData: TStudent) => {
   //create user object
   const userData: Partial<TUser> = {};
 
@@ -15,7 +15,7 @@ const createUserFromtoDB = async (password: string , studentData: TStudent) => {
   userData.role = 'student';
 
   // set manually generate id
-  userData.id = '2020040001';
+  userData.id = '2020040002';
 
   //create user data
   const newUser = await User.create(userData);

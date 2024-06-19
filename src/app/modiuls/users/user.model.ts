@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 import { TUser } from './user.interfach';
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt';
 import config from '../../config';
 
 const userSchme = new Schema<TUser>(
@@ -8,6 +8,7 @@ const userSchme = new Schema<TUser>(
     id: {
       type: String,
       required: true,
+      unique: true,
     },
     password: {
       type: String,
@@ -16,7 +17,7 @@ const userSchme = new Schema<TUser>(
     needsPasswordChange: {
       type: Boolean,
       required: true,
-      default:false
+      default: false,
     },
     role: {
       type: String,
@@ -40,8 +41,6 @@ const userSchme = new Schema<TUser>(
   },
 );
 
-
-
 // pre save middlewere hook
 userSchme.pre('save', async function (next) {
   // console.log(this,'pre hooks:this is save data');
@@ -58,7 +57,5 @@ userSchme.post('save', function (doc, next) {
   // console.log(this,'post hooks:this is save data');
   next();
 });
-
-
 
 export const User = model<TUser>('Users', userSchme);
