@@ -40,33 +40,25 @@ const localGuardianvaliditionSchema = z.object({
 });
 
 export const studentValidationSchema = z.object({
-  id: z.string().min(1, 'Unique ID is Required').trim(),
-  password: z.string().min(1, 'Last Name is Required').max(20),
-  name: studentNamevaledationSchma,
-  gender: z.enum(['male', 'female', 'other'], {
-    message: 'Gender is not valid',
+  body: z.object({
+    password: z.string().max(20).optional(),
+    Student: z.object({
+      name: studentNamevaledationSchma,
+      gender: z.enum(['male', 'female', 'other']),
+      dathOfBirth: z.string().optional(),
+      email: z.string().email(),
+      contactNo: z.string(),
+      emargencyContactNo: z.string(),
+      bloodGroup: z.enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']),
+      presentAddress: z.string(),
+      permanentAddres: z.string(),
+      guardian: gurdianvalidationSchma,
+      localGuardian: localGuardianvaliditionSchema,
+      profileImg: z.string(),
+    }),
   }),
-  dathOfBirth: z.string().min(1, 'Date of birth is Required').trim(),
-  email: z
-    .string()
-    .email('Email is not valid')
-    .min(1, 'Email is Required')
-    .trim(),
-  contactNo: z.string().min(1, 'Contact no is Required').trim(),
-  emargencyContactNo: z
-    .string()
-    .min(1, 'Emergency contact no is Required')
-    .trim(),
-  bloogGroup: z
-    .enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'])
-    .optional(),
-  presentAddress: z.string().min(1, 'Present Address is Required').trim(),
-  permanentAddres: z.string().min(1, 'Permanent Address is Required').trim(),
-  profileImg: z.string().url('Profile image must be a valid URL').optional(),
-  isActive: z.enum(['active', 'blocked']).default('active'),
-  localGuardian: localGuardianvaliditionSchema,
-  guardian: gurdianvalidationSchma,
-  isDeleted: z.boolean().optional().default(false),
 });
 
-export default studentValidationSchema;
+export const ValidationSchema = {
+  studentNamevaledationSchma,
+};
