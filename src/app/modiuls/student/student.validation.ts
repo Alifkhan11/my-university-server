@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const studentNamevaledationSchma = z.object({
+const cteateStudentNamevaledationSchma = z.object({
   firstname: z
     .string()
     .min(1, 'First Name is Required')
@@ -23,7 +23,7 @@ const studentNamevaledationSchma = z.object({
     }),
 });
 
-const gurdianvalidationSchma = z.object({
+const createGurdianvalidationSchma = z.object({
   fatherName: z.string().min(1, 'Father Name is Required').trim(),
   fatherOccupation: z.string().min(1, 'Father occupation is Required').trim(),
   fatherContactNo: z.string().min(1, 'Father contact no is Required').trim(),
@@ -32,18 +32,18 @@ const gurdianvalidationSchma = z.object({
   motherContactNo: z.string().min(1, 'Mother contact no is Required').trim(),
 });
 
-const localGuardianvaliditionSchema = z.object({
+const createLocalGuardianvaliditionSchema = z.object({
   name: z.string().min(1, 'Name is Required').trim(),
   occupation: z.string().min(1, 'Occupation is Required').trim(),
   contactNo: z.string().min(1, 'Contact no is Required').trim(),
   address: z.string().min(1, 'Address is Required').trim(),
 });
 
-export const studentValidationSchema = z.object({
+export const createStudentValidationSchema = z.object({
   body: z.object({
     password: z.string().max(20).optional(),
     Student: z.object({
-      name: studentNamevaledationSchma,
+      name: cteateStudentNamevaledationSchma,
       gender: z.enum(['male', 'female', 'other']),
       dathOfBirth: z.string().optional(),
       email: z.string().email(),
@@ -52,13 +52,13 @@ export const studentValidationSchema = z.object({
       bloodGroup: z.enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']),
       presentAddress: z.string(),
       permanentAddres: z.string(),
-      guardian: gurdianvalidationSchma,
-      localGuardian: localGuardianvaliditionSchema,
+      guardian: createGurdianvalidationSchma,
+      localGuardian: createLocalGuardianvaliditionSchema,
       profileImg: z.string(),
     }),
   }),
 });
 
 export const ValidationSchema = {
-  studentNamevaledationSchma,
+  cteateStudentNamevaledationSchma,
 };

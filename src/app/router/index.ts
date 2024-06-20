@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import { UserRought } from '../modiuls/users/user.rought';
-import { StudentRought } from '../modiuls/student/student.rought';
+import { UserRought } from '../modiuls/users/user.router';
+import { StudentRought } from '../modiuls/student/student.router';
+import { AcademicSemesterRouter } from '../modiuls/academicSemester/academicSemester.router';
 
 const router = Router();
 
@@ -12,6 +13,10 @@ const mosuleRought = [
   {
     path: '/users',
     route: UserRought,
+  },
+  {
+    path: '/academic-semister',
+    route: AcademicSemesterRouter,
   },
 ];
 
