@@ -96,8 +96,6 @@ const localGuardianSchema = new Schema<TLocalGuardian>({
   },
 });
 
-//,StudentModel,StudentModels  with TStudent
-
 const studentSchma = new Schema<TStudent, StudentModel>(
   {
     id: {
@@ -175,6 +173,10 @@ const studentSchma = new Schema<TStudent, StudentModel>(
       type: Boolean,
       default: false,
     },
+    admissionSemester: {
+      type: Schema.Types.ObjectId,
+      ref: 'AcademicSemester',
+    },
   },
   {
     toJSON: {
@@ -195,23 +197,6 @@ studentSchma.statics.isUserExists = async function (id: string) {
   return eeixtinUser;
 };
 
-// // pre save middlewere hook
-// studentSchma.pre('save', async function (next) {
-//   // console.log(this,'pre hooks:this is save data');
-//   this.password = await bcrypt.hash(
-//     this.password,
-//     Number(config.BCRYPT_SALT_ROUND),
-//   );
-//   next();
-// });
-
-// // post save middlewere hook
-// studentSchma.post('save', function (doc, next) {
-//   doc.password = '';
-//   // console.log(this,'post hooks:this is save data');
-//   next();
-// });
-// pre find middlewere hook
 studentSchma.pre('find', function (next) {
   this.find({ isDeleted: { $ne: true } });
   // console.log(this,'post hooks:this is find data');
@@ -230,18 +215,6 @@ studentSchma.pre('aggregate', function (next) {
   // console.log(this,'post hooks:this is find data');
   next();
 });
-
-// studentSchma.statics.isUserExists = async function (id: string) {
-//   const existingUser = await Student.findOne({ id });
-//   return existingUser;
-// };
-
-//for creating instance
-
-//studentSchma.methods.isUserExists=async function (id:string) {
-//const existingUser=await Student.findOne({id})
-//return existingUser
-//}
 
 //,StudentModel with tStudent
 export const Student = model<TStudent>('Student', studentSchma);

@@ -20,6 +20,21 @@ const createAcademicSemestervalidationSchema = z.object({
   }),
 });
 
+const updathAcademicSemestervalidationSchema = z.object({
+  body: z.object({
+    name: z
+      .enum([...AcademicSemesterName] as [TAcademicSemesterName])
+      .optional(),
+    code: z
+      .enum([...AcademicSemesterCode] as [TAcademicSemesterCode])
+      .optional(),
+    year: z.string().optional(),
+    startMonth: z.enum([...Months] as [TMonths]).optional(),
+    endMonth: z.enum([...Months] as [TMonths]).optional(),
+  }),
+});
+
 export const AcademicSemesterValidation = {
   createAcademicSemestervalidationSchema,
+  updathAcademicSemestervalidationSchema,
 };

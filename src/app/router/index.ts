@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { UserRought } from '../modiuls/users/user.router';
-import { StudentRought } from '../modiuls/student/student.router';
 import { AcademicSemesterRouter } from '../modiuls/academicSemester/academicSemester.router';
+import { StudentRought } from '../modiuls/student/student.rought';
 
 const router = Router();
 
