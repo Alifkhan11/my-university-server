@@ -105,9 +105,11 @@ const studentSchma = new Schema<TStudent, StudentModel>(
     },
     user: {
       type: Schema.Types.ObjectId,
-      required: [true, 'User id is required'],
-      unique: true,
-      ref: 'User',
+      ref: 'Users',
+    },
+    password: {
+      type: String,
+      required: false,
     },
     name: {
       type: studentNameSchma,
@@ -176,6 +178,10 @@ const studentSchma = new Schema<TStudent, StudentModel>(
     admissionSemester: {
       type: Schema.Types.ObjectId,
       ref: 'AcademicSemester',
+    },
+    academicDepartment: {
+      type: Schema.Types.ObjectId,
+      ref: 'AcademicDepartment',
     },
   },
   {

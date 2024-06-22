@@ -2,7 +2,8 @@ import { Router } from 'express';
 import { UserRought } from '../modiuls/users/user.router';
 import { AcademicSemesterRouter } from '../modiuls/academicSemester/academicSemester.router';
 import { StudentRought } from '../modiuls/student/student.rought';
-import { academicFacultyRouter } from '../modiuls/academicFaculty/academicFaculty.router';
+import { AcademicFacultyRouter } from '../modiuls/academicFaculty/academicFaculty.router';
+import { AcademicDepartmentRouter } from '../modiuls/academicDepartment/academicDepartment.router';
 
 const router = Router();
 
@@ -21,7 +22,11 @@ const mosuleRought = [
   },
   {
     path: '/academic-faculty',
-    route: academicFacultyRouter,
+    route: AcademicFacultyRouter,
+  },
+  {
+    path: '/academic-department',
+    route: AcademicDepartmentRouter,
   },
 ];
 

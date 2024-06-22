@@ -25,6 +25,7 @@ export type TUserName = {
 export type TStudent = {
   id: string;
   user: Types.ObjectId;
+  password: string;
   name: TUserName;
   gender: 'male' | 'female' | 'other';
   dathOfBirth: string;
@@ -38,8 +39,8 @@ export type TStudent = {
   localGuardian: TLocalGuardian;
   profileImg?: string;
   isDeleted?: boolean;
-  avatar?: string;
   admissionSemester: Types.ObjectId;
+  academicDepartment: Types.ObjectId;
 };
 
 //for creating static

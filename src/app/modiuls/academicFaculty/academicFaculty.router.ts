@@ -13,7 +13,7 @@ router.post(
   AcademicFacultycontroller.createAcademicFaculty,
 );
 
-// router.get('/', AcademicFacultycontroller.getAllAcademicFacultyes);
+router.get('/', AcademicFacultycontroller.getAllAcademicFacultyes);
 
 router.get('/:fecultyId', AcademicFacultycontroller.getSingleAcademicFaculty);
 
@@ -25,4 +25,4 @@ router.patch(
   AcademicFacultycontroller.updathAcademicFaculty,
 );
 
-export const academicFacultyRouter = router;
+export const AcademicFacultyRouter = router;
