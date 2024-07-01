@@ -192,7 +192,7 @@ const studentSchma = new Schema<TStudent, StudentModel>(
 );
 
 studentSchma.virtual('fullName').get(function () {
-  return `${this.name.firstname} ${this?.name?.middname} ${this.name.lestname}`;
+  return `${this?.name?.firstname} ${this?.name?.middname} ${this?.name?.lestname}`;
 });
 
 //for creating custom instans method

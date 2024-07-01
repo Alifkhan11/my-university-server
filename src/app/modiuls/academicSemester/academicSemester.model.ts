@@ -14,11 +14,13 @@ const academicSemesterSchema = new Schema<TAcademicSemester>(
       type: String,
       required: true,
       enum: AcademicSemesterName,
+      unique: true,
     },
     code: {
       type: String,
       requirde: true,
       enum: AcademicSemesterCode,
+      unique: true,
     },
     year: {
       type: String,

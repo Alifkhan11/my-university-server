@@ -8,4 +8,5 @@ export default {
   DATABASE_URL: process.env.DATABASE_URL,
   BCRYPT_SALT_ROUND: process.env.BCRYPT,
   DEFAULT_PASSWORD: process.env.DEFAULT_PASSWORD,
+  NODE_NEW: process.env.NODE_NEW,
 };

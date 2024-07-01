@@ -8,6 +8,7 @@ import { TUser } from './user.interfach';
 import { User } from './user.model';
 import { generateStudentId } from './user.utils';
 import httpStatus from 'http-status';
+import { TAcademicSemester } from '../academicSemester/academicSemester.interfach';
 
 const createUserFromtoDB = async (password: string, studentData: TStudent) => {
   //create user object
@@ -24,15 +25,17 @@ const createUserFromtoDB = async (password: string, studentData: TStudent) => {
   const admissionSemesterID = studentData.admissionSemester;
   const admissionSemester =
     await AcademicSemester.findById(admissionSemesterID);
-  if (!admissionSemester) {
-    throw new AppError(400, 'Admission semester not found');
-  }
+  // if (!admissionSemester) {
+  //   throw new AppError(400, 'Admission semester not found');
+  // }
 
   const session = await mongoose.startSession();
 
   try {
     await session.startTransaction();
-    userData.id = await generateStudentId(admissionSemester);
+    userData.id = await generateStudentId(
+      admissionSemester as TAcademicSemester,
+    );
 
     const newUser = await User.create([userData], { session });
 
