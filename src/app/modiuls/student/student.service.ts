@@ -80,6 +80,7 @@ const getAllStudentFromDB = async (query: Record<string, unknown>) => {
   )
     .search(studentSearchAbleFields)
     .filter()
+    .sort()
     .apginet()
     .fields();
   const resualt = await studentQuery.modelQuery;
@@ -87,7 +88,7 @@ const getAllStudentFromDB = async (query: Record<string, unknown>) => {
 };
 
 const getSingleStudentFromDB = async (id: string) => {
-  const resualt = await Student.findOne({ id })
+  const resualt = await Student.findById(id)
     .populate('admissionSemester')
     .populate('user')
     .populate({
@@ -102,8 +103,8 @@ const deletedSingleStudentFromDB = async (id: string) => {
   try {
     session.startTransaction();
 
-    const deletedStudent = await Student.updateOne(
-      { id },
+    const deletedStudent = await Student.findByIdAndUpdate(
+      id,
       { isDeleted: true },
       { new: true, session },
     );
@@ -111,8 +112,8 @@ const deletedSingleStudentFromDB = async (id: string) => {
     if (!deletedStudent) {
       throw new AppError(httpStatus.BAD_REQUEST, 'Failed to delete student');
     }
-
-    const deleteUser = await User.findOneAndUpdate(
+    // const userId = deletedStudent.user;
+    const deleteUser = await User.findByIdAndUpdate(
       { id },
       { isDeleted: true },
       { new: true, session },

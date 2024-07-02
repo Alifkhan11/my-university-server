@@ -18,27 +18,23 @@ const getAllStudents = catchAsync(async (req, res) => {
 
 //get single user
 
-const getSingleStudent: RequestHandler = async (req, res, next) => {
-  try {
-    const { studentId } = req.params;
+const getSingleStudent: RequestHandler = catchAsync(async (req, res) => {
+  const { id } = req.params;
 
-    const resualt = await StudentServises.getSingleStudentFromDB(studentId);
+  const resualt = await StudentServises.getSingleStudentFromDB(id);
 
-    sendResponse(res, {
-      statusCode: httpStatus.OK,
-      success: true,
-      message: 'Student single data get now here',
-      data: resualt,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Student single data get now here',
+    data: resualt,
+  });
+});
 
 const deletedSingleStudent = catchAsync(async (req, res) => {
-  const { studentId } = req.params;
+  const { id } = req.params;
 
-  const resualt = await StudentServises.deletedSingleStudentFromDB(studentId);
+  const resualt = await StudentServises.deletedSingleStudentFromDB(id);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -48,10 +44,10 @@ const deletedSingleStudent = catchAsync(async (req, res) => {
   });
 });
 const updathStudent = catchAsync(async (req, res) => {
-  const { studentId } = req.params;
+  const { id } = req.params;
   const { Student } = req.body;
 
-  const resualt = await StudentServises.updathStudentFromDB(studentId, Student);
+  const resualt = await StudentServises.updathStudentFromDB(id, Student);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,

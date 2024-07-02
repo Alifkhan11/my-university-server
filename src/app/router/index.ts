@@ -4,6 +4,7 @@ import { AcademicSemesterRouter } from '../modiuls/academicSemester/academicSeme
 import { StudentRought } from '../modiuls/student/student.rought';
 import { AcademicFacultyRouter } from '../modiuls/academicFaculty/academicFaculty.router';
 import { AcademicDepartmentRouter } from '../modiuls/academicDepartment/academicDepartment.router';
+import { CourseRouter } from '../modiuls/course/course.rought';
 
 const router = Router();
 
@@ -27,6 +28,10 @@ const mosuleRought = [
   {
     path: '/academic-department',
     route: AcademicDepartmentRouter,
+  },
+  {
+    path: '/course',
+    route: CourseRouter,
   },
 ];
 
