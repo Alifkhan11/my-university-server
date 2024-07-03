@@ -19,7 +19,7 @@ const getAllCousrseFromDB = async (query: Record<string, unknown>) => {
     .search(CourseSearchableFields)
     .filter()
     .sort()
-    .apginet()
+    .paginate()
     .fields();
   const resualt = await courseQuery.modelQuery;
   return resualt;
@@ -137,8 +137,6 @@ const assignFacultyesWithCourseInToDb = async (
   return resualt;
 };
 
-
-
 const removeFacultiesFromCourseFromDB = async (
   id: string,
   payload: Partial<TCourseFaculty>,
@@ -155,9 +153,6 @@ const removeFacultiesFromCourseFromDB = async (
   return result;
 };
 
-
-
-
 export const CourseServices = {
   createCourseFromDB,
   getAllCousrseFromDB,
@@ -165,5 +160,5 @@ export const CourseServices = {
   deletedCourseFromDB,
   updathCourseInToDB,
   assignFacultyesWithCourseInToDb,
-  removeFacultiesFromCourseFromDB
+  removeFacultiesFromCourseFromDB,
 };

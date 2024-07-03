@@ -23,11 +23,11 @@ router.patch(
   CourseController.updathCourse,
 );
 
-
-router.put('/:courseId/assign-faculties',validateRequest(CourseValidaerion.facultyWithCourseValidationScema),CourseController.assignFacultyesWithCourse)
-
-
-
+router.put(
+  '/:courseId/assign-faculties',
+  validateRequest(CourseValidaerion.facultyWithCourseValidationScema),
+  CourseController.assignFacultyesWithCourse,
+);
 
 router.delete(
   '/:courseId/remove-faculties',

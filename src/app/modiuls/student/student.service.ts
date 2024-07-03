@@ -81,7 +81,7 @@ const getAllStudentFromDB = async (query: Record<string, unknown>) => {
     .search(studentSearchAbleFields)
     .filter()
     .sort()
-    .apginet()
+    .paginate()
     .fields();
   const resualt = await studentQuery.modelQuery;
   return resualt;
