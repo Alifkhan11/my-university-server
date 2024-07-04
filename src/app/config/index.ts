@@ -9,4 +9,5 @@ export default {
   BCRYPT_SALT_ROUND: process.env.BCRYPT,
   DEFAULT_PASSWORD: process.env.DEFAULT_PASSWORD,
   NODE_NEW: process.env.NODE_NEW,
+  JWT_SECRET_ACCESS_KE:process.env.JWT_SECRET_ACCESS_KE
 };

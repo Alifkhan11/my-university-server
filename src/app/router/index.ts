@@ -6,6 +6,8 @@ import { AcademicFacultyRouter } from '../modiuls/academicFaculty/academicFacult
 import { AcademicDepartmentRouter } from '../modiuls/academicDepartment/academicDepartment.router';
 import { CourseRouter } from '../modiuls/course/course.rought';
 import { semesterRegistrationRoutes } from '../modiuls/semesterRegistration/semesterRegistration.router';
+import { AuthRouter } from '../modiuls/Auth/auth.router';
+import { AdminRoutes } from '../modiuls/Admin/admin.route';
 
 const router = Router();
 
@@ -37,6 +39,14 @@ const mosuleRought = [
   {
     path: '/semester-registrations',
     route: semesterRegistrationRoutes,
+  },
+  {
+    path: '/auth',
+    route: AuthRouter,
+  },
+  {
+    path: '/admins',
+    route: AdminRoutes,
   },
 ];
 
